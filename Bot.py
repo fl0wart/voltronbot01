@@ -135,16 +135,24 @@ async def say(*args):
         
         
            
-@client.command(pass_context=True)
-@commands.has_permissions(administrator=True)
-async def makemod(ctx, user:discord.Member,):
-    await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='Mods')
-    await client.add_roles(ctx.message.mentions[0], role)
-
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
-async def makehelper(ctx, user: discord.Member):
+async def makemod(ctx, user: discord.Member):
+    nickname = '[MOD]' + user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    await client.add_roles(user, role)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Congratulations Message')
+    embed.add_field(name = '__Congratulations__',value ='**Congratulations for Mods.Hope you will be more active here. Thanks for your help and support.**',inline = False)
+    embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
+    await client.send_message(user,embed=embed)
+    await client.delete_message(ctx.message)
+    
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def makethelper(ctx, user: discord.Member):
     nickname = '[TH]' + user.name
     await client.change_nickname(user, nickname=nickname)
     role = discord.utils.get(ctx.message.server.roles, name='Trial Helpers')
@@ -165,7 +173,39 @@ async def removehelper(ctx, user: discord.Member):
     role = discord.utils.get(ctx.message.server.roles, name='Trial Helpers')
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
+    
+client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def removemod(ctx, user: discord.Member):
+    nickname = user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    await client.remove_roles(user, role)
+    await client.delete_message(ctx.message)
+    
+client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def removeadmin(ctx, user: discord.Member):
+    nickname = user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    await client.remove_roles(user, role)
+    await client.delete_message(ctx.message)
 
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def makeadmin(ctx, user: discord.Member):
+    nickname = '[ADM]' + user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    await client.add_roles(user, role)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Congratulations Message')
+    embed.add_field(name = '__Congratulations__',value ='**Congratulations for ADMINS.Hope you will be more active here. Thanks for your help and support.**',inline = False)
+    embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
+    await client.send_message(user,embed=embed)
+    await client.delete_message(ctx.message)
         
         
         
