@@ -38,9 +38,9 @@ async def on_member_join(member):
 async def on_message(message):
     
     await client.process_commands(message)
-    if message.content.startswith(';botowner'):
+    if message.content.startswith('idkwhoiam'):
         userID = message.author.id
-        await client.send_message(message.channel, 'fl0w. 💔#1337 is the bot owner!' % (userID))
+        await client.send_message(message.channel, 'idk!' % (userID))
 
 @client.command(pass_context =True)
 async def help(ctx):
