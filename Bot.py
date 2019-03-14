@@ -11,19 +11,9 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help for commands', 'with the code', "something"]
 
 players = {}
 
-
-async def change_status():
-    await client.wait_until_ready()
-    msgs = cycle(status)
-
-    while not client.is_closed:
-        current_status = next(msgs)
-        await client.change_presence(game=discord.Game(name =current_status))
-        await asyncio.sleep(20)
 
 @client.event
 async def on_ready():
@@ -231,5 +221,4 @@ async def serverinfo(ctx, user: discord.Member):
     await client.say(embed=embed)
 
 
-client.loop.create_task(change_status())
 client.run('NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk')
