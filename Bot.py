@@ -28,6 +28,7 @@ async def change_status():
 @client.event
 async def on_ready():
     print('The bot is online and is connected to discord')
+    await bot.change_presence(game=discord.Game(name=';help'), status=discord.Status.do_not_disturb)
 
 
 @client.event
