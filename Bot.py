@@ -11,7 +11,7 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help for commands', 'wth the code', "something"]
+status = [';help for commands', 'with the code', "something"]
 
 players = {}
 
@@ -137,9 +137,9 @@ async def say(*args):
            
 @client.command(pass_context=True)
 @commands.has_permissions(administrator=True)
-async def mod(ctx, user:discord.Member,):
+async def makemod(ctx, user:discord.Member,):
     await client.delete_message(ctx.message)
-    role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    role = discord.utils.get(ctx.message.server.roles, name='Mods')
     await client.add_roles(ctx.message.mentions[0], role)
 
 @client.command(pass_context = True)
@@ -147,7 +147,7 @@ async def mod(ctx, user:discord.Member,):
 async def makehelper(ctx, user: discord.Member):
     nickname = '[TH]' + user.name
     await client.change_nickname(user, nickname=nickname)
-    role = discord.utils.get(ctx.message.server.roles, name='TRIAL-HELPER')
+    role = discord.utils.get(ctx.message.server.roles, name='Trial Helpers')
     await client.add_roles(user, role)
     r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
     embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
@@ -162,7 +162,7 @@ async def makehelper(ctx, user: discord.Member):
 async def removehelper(ctx, user: discord.Member):
     nickname = user.name
     await client.change_nickname(user, nickname=nickname)
-    role = discord.utils.get(ctx.message.server.roles, name='TRIAL-HELPER')
+    role = discord.utils.get(ctx.message.server.roles, name='Trial Helpers')
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
 
