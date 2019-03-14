@@ -38,9 +38,9 @@ async def on_member_join(member):
 async def on_message(message):
     
     await client.process_commands(message)
-    if message.content.startswith('Sup dude'):
+    if message.content.startswith(';botowner'):
         userID = message.author.id
-        await client.send_message(message.channel, '<@%s> sup' % (userID))
+        await client.send_message(message.channel, 'fl0w. 💔#1337 is the bot owner!' % (userID))
 
 @client.command(pass_context =True)
 async def help(ctx):
@@ -53,7 +53,7 @@ async def help(ctx):
     embed.add_field(name =';leave', value ='The bot leaves the current voice channel.', inline=False)
     embed.add_field(name =';play', value ='Plays the audio from a youtube url', inline=False)
     embed.add_field(name =';serverinfo', value ='Gives the server information on the selected user,so you must do ;serverinfo and mention the user!', inline=False)
-
+    embed.add_field(name =';botowner', value ='Know who is the bot owner!', inline=False)
     await client.send_message(author, embed=embed)
 
 
