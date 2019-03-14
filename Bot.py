@@ -8,10 +8,10 @@ import youtube_dl
 
 my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 
-client = commands.Bot(command_prefix = '+')
+client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = ['+help for commands', 'With code', "something"]
+status = [';help for commands', ';with the code', "something"]
 
 players = {}
 
