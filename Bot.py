@@ -11,7 +11,7 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help for commands', ';with the code', "something"]
+status = [';help for commands', 'wth the code', "something"]
 
 players = {}
 
@@ -49,13 +49,12 @@ async def help(ctx):
     author = ctx.message.author
     embed = discord.Embed(Colour = discord.Colour.orange())
     embed.set_author(name = 'Help Commands')
-    embed.add_field(name ='+say', value ='Returns what the user says.', inline=False)
-    embed.add_field(name ='+clear', value ='Deletes certain amount of messages, default amount is 10', inline=False)
-    embed.add_field(name ='+join', value ='The bot joins the current voice channel, the user must be in a voice channel to use this comand', inline=False)
-    embed.add_field(name ='+leave', value ='The bot leaves the current voice channel.', inline=False)
-    embed.add_field(name ='+play', value ='Plays the audio from a youtube url', inline=False)
-    embed.add_field(name ='+serverinfo', value ='Gives the server information on the selected user', inline=False)
-    embed.add_field(name ='Sup dude', value =' says sup XD', inline=False)
+    embed.add_field(name =';say', value ='Returns what the user says.', inline=False)
+    embed.add_field(name =';clear', value ='Deletes certain amount of messages, default amount is 10', inline=False)
+    embed.add_field(name =';join', value ='The bot joins the current voice channel, the user must be in a voice channel to use this command', inline=False)
+    embed.add_field(name =';leave', value ='The bot leaves the current voice channel.', inline=False)
+    embed.add_field(name =';play', value ='Plays the audio from a youtube url', inline=False)
+    embed.add_field(name =';serverinfo', value ='Gives the server information on the selected user,so you must do ;serverinfo and mention the user!', inline=False)
 
     await client.send_message(author, embed=embed)
 
@@ -81,10 +80,10 @@ async def join(ctx):
         colour = discord.Colour.blue()
     )
 
-    embed.add_field(name = '+play', value = 'play youtube audio with url', inline = False)
-    embed.add_field(name = '+pause', value = 'pauses audio', inline = False)
-    embed.add_field(name = '+resume', value = 'resumes audio', inline = False)
-    embed.add_field(name = '+leave', value = 'leave voice channel', inline = False)
+    embed.add_field(name = ';play', value = 'play youtube audio with url', inline = False)
+    embed.add_field(name = ';pause', value = 'pauses audio', inline = False)
+    embed.add_field(name = ';resume', value = 'resumes audio', inline = False)
+    embed.add_field(name = ';leave', value = 'leave voice channel', inline = False)
 
     await client.say(embed=embed)
     await client.join_voice_channel(channel)
