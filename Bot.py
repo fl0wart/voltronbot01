@@ -11,7 +11,7 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help | Check DM!', "with 1 server"]
+status = [';help | Check DM!', "with 2 servers"]
 
 players = {}
 
