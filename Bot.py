@@ -11,7 +11,7 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help | Check DM!', 'with str(len(set(bot.get_all_members())))+ users', 'z', "OK"]
+status = [';help | Check DM!', "with 1 server"]
 
 players = {}
 
@@ -22,7 +22,7 @@ async def change_status():
     while not client.is_closed:
         current_status = next(msgs)
         await client.change_presence(game=discord.Game(name =current_status))
-        await asyncio.sleep(6)
+        await asyncio.sleep(5)
         
 @client.event
 async def on_ready():
