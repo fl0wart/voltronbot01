@@ -165,14 +165,14 @@ async def makethelper(ctx, user: discord.Member):
     
 @client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
-async def removehelper(ctx, user: discord.Member):
+async def removethelper(ctx, user: discord.Member):
     nickname = user.name
     await client.change_nickname(user, nickname=nickname)
     role = discord.utils.get(ctx.message.server.roles, name='Trial Helpers')
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
     
-client.command(pass_context = True)
+@client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
 async def removemod(ctx, user: discord.Member):
     nickname = user.name
@@ -181,7 +181,7 @@ async def removemod(ctx, user: discord.Member):
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
     
-client.command(pass_context = True)
+@client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
 async def removeadmin(ctx, user: discord.Member):
     nickname = user.name
@@ -204,7 +204,31 @@ async def makeadmin(ctx, user: discord.Member):
     embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
     await client.send_message(user,embed=embed)
     await client.delete_message(ctx.message)
-     
+    
+@client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def makehelper(ctx, user: discord.Member):
+    nickname = '[H]' + user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Helpers')
+    await client.add_roles(user, role)
+    r, g, b = tuple(int(x * 255) for x in colorsys.hsv_to_rgb(random.random(), 1, 1))
+    embed = discord.Embed(color = discord.Color((r << 16) + (g << 8) + b))
+    embed.set_author(name='Congratulations Message')
+    embed.add_field(name = '__Congratulations__',value ='**Congratulations for HELPER.Hope you will be more active here. Thanks for your help and support.**',inline = False)
+    embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
+    await client.send_message(user,embed=embed)
+    await client.delete_message(ctx.message)
+   
+client.command(pass_context = True)
+@commands.has_permissions(administrator=True)     
+async def removehelper(ctx, user: discord.Member):
+    nickname = user.name
+    await client.change_nickname(user, nickname=nickname)
+    role = discord.utils.get(ctx.message.server.roles, name='Helpers')
+    await client.remove_roles(user, role)
+    await client.delete_message(ctx.message)
+    
 @client.command(pass_context = True)
 async def botowner():
     await bot.say('The bot owner is fl0w. 💔#1337 !')
