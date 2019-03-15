@@ -11,23 +11,14 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
-status = [';help | Check DM!', 'with the code', 'BOT STATUS: ON', "with python"]
 
 players = {}
 
-async def change_status():
-    await client.wait_until_ready()
-    msgs = cycle(status)
-
-    while not client.is_closed:
-        current_status = next(msgs)
-        await client.change_presence(game=discord.Game(name =current_status))
-        await asyncio.sleep(6)
 
 @client.event
 async def on_ready():
     print('The bot is online and is connected to discord')
-    
+
 @client.event
 async def on_member_join(member):
     role = discord.utils.get(member.server.roles, name='members')
@@ -38,9 +29,9 @@ async def on_member_join(member):
 async def on_message(message):
     
     await client.process_commands(message)
-    if message.content.startswith('idkwhoiam'):
+    if message.content.startswith('Sup dude'):
         userID = message.author.id
-        await client.send_message(message.channel, 'idk!' % (userID))
+        await client.send_message(message.channel, '<@%s> sup' % (userID))
 
 @client.command(pass_context =True)
 async def help(ctx):
@@ -53,7 +44,7 @@ async def help(ctx):
     embed.add_field(name =';leave', value ='The bot leaves the current voice channel.', inline=False)
     embed.add_field(name =';play', value ='Plays the audio from a youtube url', inline=False)
     embed.add_field(name =';serverinfo', value ='Gives the server information on the selected user,so you must do ;serverinfo and mention the user!', inline=False)
-    embed.add_field(name =';botowner', value ='Know who is the bot owner!', inline=False)
+
     await client.send_message(author, embed=embed)
 
 
@@ -204,8 +195,10 @@ async def makeadmin(ctx, user: discord.Member):
     embed.set_image(url = 'https://preview.ibb.co/i1izTz/ezgif_5_e20b665628.gif')
     await client.send_message(user,embed=embed)
     await client.delete_message(ctx.message)
-        
-        
+     
+@client.command(pass_context = True)
+async def botowner():
+    await bot.say('The bot owner is fl0w. 💔#1337 !')
         
         
         
@@ -227,5 +220,5 @@ async def serverinfo(ctx, user: discord.Member):
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
 
-client.loop.create_task(change_status())
+
 client.run('NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk')
