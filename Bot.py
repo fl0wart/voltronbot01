@@ -48,7 +48,7 @@ async def help(ctx):
     embed = discord.Embed(Colour = discord.Colour.orange())
     embed.set_author(name = 'Help Commands')
     embed.add_field(name =';say', value ='Returns what the user says.', inline=False)
-    embed.add_field(name =';clear', value ='Deletes certain amount of messages, default amount is 10', inline=False)
+    embed.add_field(name =';purge', value ='Deletes certain amount of messages, default amount is 10', inline=False)
     embed.add_field(name =';join', value ='The bot joins the current voice channel, the user must be in a voice channel to use this command', inline=False)
     embed.add_field(name =';leave', value ='The bot leaves the current voice channel.', inline=False)
     embed.add_field(name =';play', value ='Plays the audio from a youtube url', inline=False)
@@ -59,7 +59,7 @@ async def help(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
-async def clear(ctx, amount = 10):
+async def purge(ctx, amount = 10):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel, limit=int(amount) +1):
