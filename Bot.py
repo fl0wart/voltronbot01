@@ -47,8 +47,8 @@ async def help(ctx):
     author = ctx.message.author
     embed = discord.Embed(Colour = discord.Colour.orange())
     embed.set_author(name = 'Help Commands')
-    embed.add_field(name =';say', value ='Returns what the user says.', inline=False)
-    embed.add_field(name =';purge', value ='Deletes certain amount of messages, default amount is 10', inline=False)
+    embed.add_field(name =';say', value ='Returns what the user says. (INACTIVE COMMAND / OFFLINE COMMAND)', inline=False)
+    embed.add_field(name =';purge', value ='Deletes certain amount of messages, default amount is 10 (INACTIVE COMMAND / OFFLINE COMMAND)', inline=False)
     embed.add_field(name =';join', value ='The bot joins the current voice channel, the user must be in a voice channel to use this command', inline=False)
     embed.add_field(name =';leave', value ='The bot leaves the current voice channel.', inline=False)
     embed.add_field(name =';play', value ='Plays the audio from a youtube url', inline=False)
@@ -59,7 +59,7 @@ async def help(ctx):
 
 @client.command(pass_context = True)
 @commands.has_permissions(kick_members=True) 
-async def purge(ctx, amount = 10):
+async def apurge(ctx, amount = 10):
     channel = ctx.message.channel
     messages = []
     async for message in client.logs_from(channel, limit=int(amount) +1):
@@ -121,7 +121,7 @@ async def stop(ctx):
 
 @client.command()
 @commands.has_permissions(manage_messages=True) 
-async def say(*args):
+async def asay(*args):
         output = ''
         for word in args:
             output += word
