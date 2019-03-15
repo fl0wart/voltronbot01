@@ -1,4 +1,4 @@
-import discord
+mport discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
@@ -11,11 +11,23 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
+status = [';help | Check DM!', 'with the code', 'BOT STATUS: ON', "with python"]
+
+players = {}
+
+async def change_status():
+    await client.wait_until_ready()
+    msgs = cycle(status)
+
+    while not client.is_closed:
+        current_status = next(msgs)
+        await client.change_presence(game=discord.Game(name =current_status))
+        await asyncio.sleep(6)
 
 @client.event
 async def on_ready():
     print('The bot is online and is connected to discord')
-    bot.loop.create_task(status_task())  
+    
 @client.event
 async def on_member_join(member):
     role = discord.utils.get(member.server.roles, name='members')
@@ -214,15 +226,6 @@ async def serverinfo(ctx, user: discord.Member):
     embed.add_field(name="Joined", value=user.joined_at)
     embed.set_thumbnail(url=user.avatar_url)
     await client.say(embed=embed)
-@bot.event	                                                
-async def status_task():
-    while True:
-        await bot.change_presence(game=discord.Game(name=';help | Check DM!', type=2))
-        await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name=str(len(set(bot.get_all_members())))+' users', type=3))
-        await asyncio.sleep(10)
-        await bot.change_presence(game=discord.Game(name=str(len(bot.servers))+' servers', type=3))
-        await asyncio.sleep(10)
-        	
-    
+
+client.loop.create_task(change_status())
 client.run('NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk')
