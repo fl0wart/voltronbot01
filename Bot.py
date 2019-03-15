@@ -220,7 +220,7 @@ async def makehelper(ctx, user: discord.Member):
     await client.send_message(user,embed=embed)
     await client.delete_message(ctx.message)
    
-client.command(pass_context = True)
+@client.command(pass_context = True)
 @commands.has_permissions(administrator=True)     
 async def removehelper(ctx, user: discord.Member):
     nickname = user.name
@@ -229,9 +229,6 @@ async def removehelper(ctx, user: discord.Member):
     await client.remove_roles(user, role)
     await client.delete_message(ctx.message)
     
-@client.command(pass_context = True)
-async def botowner():
-    await bot.say('The bot owner is fl0w. 💔#1337 !')
         
         
         
