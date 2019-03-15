@@ -11,10 +11,19 @@ my_token = 'NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk'
 client = commands.Bot(command_prefix = ';')
 
 client.remove_command('help')
+status = [';help | Check DM!', 'with str(len(set(bot.get_all_members())))+' users', 'z', "OK"]
 
 players = {}
 
+async def change_status():
+    await client.wait_until_ready()
+    msgs = cycle(status)
 
+    while not client.is_closed:
+        current_status = next(msgs)
+        await client.change_presence(game=discord.Game(name =current_status))
+        await asyncio.sleep(6)
+        
 @client.event
 async def on_ready():
     print('The bot is online and is connected to discord')
