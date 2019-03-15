@@ -230,4 +230,5 @@ async def serverinfo(ctx, user: discord.Member):
     await client.say(embed=embed)
 
 
+client.loop.create_task(change_status())
 client.run('NTU0MzczODAwMDAzNzY0MjQ0.D2bt9w.GYUh2zWLCKCoj8eVYN76E9aUhfk')
